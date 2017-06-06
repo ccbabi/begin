@@ -1,0 +1,9 @@
+@import 'a.css';
+
+body {
+  background: red;
+}
+
+h2 {
+  font-size: 20px;
+}
