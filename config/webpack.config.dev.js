@@ -1,22 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const PATHS = require('./paths')
+const entrys = require('./getEntrys')
 
 module.exports = {
-  entry: {
-    page1: './src/pages/page1/index.js'
-  },
+  entry: entrys,
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: PATHS.DIST_PATH,
+    filename: 'js/[name].bundle.js'
   },
   module: {
     rules: [{
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
-    }, {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: ['babel-loader']
     }]
   },
   plugins: [
@@ -28,9 +25,17 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'html/[name].html',
+      template: '/Users/wangjie/learn/begin/src/pages/page1/index.ejs',
+      chunks: ['manifest', 'vendor', 'page1'],
+      minify: {
+        removeComments: true
+      }
     })
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist')
+    contentBase: PATHS.DIST_PATH
   }
 }
