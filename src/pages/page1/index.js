@@ -1,3 +1,3 @@
-import './style.css'
+import './style.less'
 
-document.body.innerHTML = 'page1.js'
+document.body.innerHTML = 'page1 works!'

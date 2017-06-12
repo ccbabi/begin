@@ -1,14 +1,14 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const pageCfg = require("./pageCfg");
+const pages = require("../utils/pages");
 
-const cfg = Object.keys(pageCfg.template).map(key => {
+const plugins = Object.keys(pages.template).map(key => {
   return new HtmlWebpackPlugin({
     filename: `html/${key}.html`,
-    template: pageCfg.template[key],
+    template: pages.template[key],
     chunks: ["manifest", "vendor", key],
     minify: {
       removeComments: true
     }
   });
 });
-module.exports = cfg;
+module.exports = plugins;

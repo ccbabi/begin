@@ -1,39 +1,25 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const PATHS = require('../config/paths')
-const pageCfg = require('../config/pageCfg')
-const htmlCfg = require('../config/htmlCfg')
+const PATHS = require('../utils/paths')
+const pages = require('../utils/pages')
+const htmlPlugin = require('./htmlPlugin')
+const cssRule = require('./cssRule')
+const commonPlugin = require('./commonPlugin')
 
-const cfg = {
-  entry: pageCfg.entrys,
+module.exports = {
+  entry: pages.entrys,
   output: {
     path: PATHS.DIST_PATH,
     filename: 'js/[name].bundle.js'
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader']
-    }]
+    rules: [].concat(cssRule)
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
-    })
-  ],
+  plugins: [].concat(commonPlugin, htmlPlugin),
+  performance: {
+    hints: false
+  },
   devtool: 'eval-source-map',
   devServer: {
     contentBase: PATHS.DIST_PATH
+    // noInfo: true
   }
 }
-
-cfg.plugins = cfg.plugins.concat(htmlCfg)
-
-module.exports = cfg

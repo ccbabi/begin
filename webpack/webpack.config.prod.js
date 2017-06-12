@@ -1,44 +1,29 @@
-const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const PATHS = require('../config/paths')
-const pageCfg = require('../config/pageCfg')
-const htmlCfg = require('../config/htmlCfg')
+const PATHS = require('../utils/paths')
+const pages = require('../utils/pages')
+const htmlPlugin = require('./htmlPlugin')
+const cssRule = require('./cssRule')
+const commonPlugin = require('./commonPlugin')
 
-const cfg = {
-  entry: pageCfg.entrys,
+module.exports = {
+  entry: pages.entrys,
   output: {
     path: PATHS.DIST_PATH,
-    filename: 'js/[name].bundle.js'
+    filename: 'js/[name]-[chunkhash].js'
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        use: 'css-loader'
-      })
-    }]
+    rules: [].concat(cssRule)
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
       }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
-    }),
-    new ExtractTextPlugin('css/[name].css')
-  ],
+    })
+  ].concat(commonPlugin, htmlPlugin),
   devtool: 'source-map',
-  devServer: {
-    contentBase: PATHS.DIST_PATH
+  performance: {
+    hints: false
   }
 }
-
-cfg.plugins = cfg.plugins.concat(htmlCfg)
-// console.log(cfg)
-
-module.exports = cfg
