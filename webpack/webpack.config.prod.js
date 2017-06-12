@@ -1,14 +1,16 @@
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const PATHS = require('../config/paths')
+const pageCfg = require('../config/pageCfg')
+const htmlCfg = require('../config/htmlCfg')
 
-module.exports = {
-  entry: {
-    page1: './src/pages/page1/index.js'
-  },
+const cfg = {
+  entry: pageCfg.entrys,
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: PATHS.DIST_PATH,
+    filename: 'js/[name].bundle.js'
   },
   module: {
     rules: [{
@@ -28,6 +30,15 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest'
     }),
-    new ExtractTextPlugin('page1.css')
-  ]
+    new ExtractTextPlugin('css/[name].css')
+  ],
+  devtool: 'source-map',
+  devServer: {
+    contentBase: PATHS.DIST_PATH
+  }
 }
+
+cfg.plugins = cfg.plugins.concat(htmlCfg)
+// console.log(cfg)
+
+module.exports = cfg

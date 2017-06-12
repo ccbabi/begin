@@ -9,9 +9,14 @@ const pageNames = fs.readdirSync(pagesPath).filter(pageName => {
   return fs.statSync(pagePath).isDirectory()
 })
 
-const entrys = {}
+const cfg = {
+  entrys: {},
+  template: {}
+}
 pageNames.forEach(pageName => {
-  entrys[pageName] = path.join(pagesPath, pageName, 'index.js')
+  const baseDir = path.join(pagesPath, pageName)
+  cfg.entrys[pageName] = path.join(baseDir, 'index.js')
+  cfg.template[pageName] = path.join(baseDir, 'index.html')
 })
-console.log(entrys)
-module.exports = entrys
+
+module.exports = cfg

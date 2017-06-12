@@ -1,3 +1,3 @@
 import './style.css'
 
-console.log('page2')
+document.body.innerHTML = 'page2.js'

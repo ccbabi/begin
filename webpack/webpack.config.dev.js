@@ -1,11 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const PATHS = require('./paths')
-const entrys = require('./getEntrys')
+const PATHS = require('../config/paths')
+const pageCfg = require('../config/pageCfg')
+const htmlCfg = require('../config/htmlCfg')
 
-module.exports = {
-  entry: entrys,
+const cfg = {
+  entry: pageCfg.entrys,
   output: {
     path: PATHS.DIST_PATH,
     filename: 'js/[name].bundle.js'
@@ -25,17 +26,14 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'html/[name].html',
-      template: '/Users/wangjie/learn/begin/src/pages/page1/index.ejs',
-      chunks: ['manifest', 'vendor', 'page1'],
-      minify: {
-        removeComments: true
-      }
     })
   ],
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: PATHS.DIST_PATH
   }
 }
+
+cfg.plugins = cfg.plugins.concat(htmlCfg)
+
+module.exports = cfg

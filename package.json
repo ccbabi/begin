@@ -17,9 +17,9 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "prestart": "yarn run clean",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.config.dev.js",
-    "build": "webpack --config ./config/webpack.config.dev.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack/webpack.config.dev.js --open",
+    "prebuild": "yarn run clean",
+    "build": "webpack --config ./webpack/webpack.config.prod.js",
     "clean": "rimraf dist/*"
   },
   "dependencies": {
