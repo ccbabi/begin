@@ -44,7 +44,7 @@ module.exports = [
           }
         },
         {
-          loader: "styl-loader",
+          loader: "stylus-loader",
           options: {
             sourceMap: true
           }

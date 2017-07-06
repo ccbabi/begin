@@ -1,5 +1,4 @@
-## TODO
-- [ ] 生成page-html（肯定有的）
-- [ ] 生成page-js、抽离第三方库（可能没有）
-- [ ] 生成page-css（跟上一条）
 
+- html 可选，生成或指定
+- js 可选
+- 生成在dist/static下
