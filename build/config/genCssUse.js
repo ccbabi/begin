@@ -5,9 +5,13 @@ const baseLoaders = [{
   options: {
     importLoaders: 1
   }
-}, {
+}
+/*
+, {
   loader: 'postcss-loader'
-}]
+}
+*/
+]
 
 module.exports = genCssUse
 

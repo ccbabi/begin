@@ -16,6 +16,4 @@ const webpackDevConfig = merge(webpackBaseConfig, {
   }
 })
 
-console.log(JSON.stringify(webpackDevConfig))
-
 module.exports = webpackDevConfig

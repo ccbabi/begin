@@ -6,7 +6,13 @@ const pages = require("./pages")
 const htmlWebpackPlugins = pages.map(pageItem => new HtmlWebpackPlugin({
   filename: `html/${pageItem.page}.html`,
   template: pageItem.template,
+  chunks: [pageItem.page],
+  minify: {
+    removeComments: true
+  }
 }))
+
+console.log(htmlWebpackPlugins)
 
 const plugins = [
   ...htmlWebpackPlugins,

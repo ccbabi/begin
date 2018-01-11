@@ -16,4 +16,4 @@ const webpackProdConfig = merge(webpackBaseConfig, {
   devtool: 'source-map'
 })
 
-module.exports = webpackBaseConfig
+module.exports = webpackProdConfig
