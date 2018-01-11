@@ -1,21 +1,20 @@
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const pages = require("./pages")
 
-module.exports = [
-  new webpack.optimize.CommonsChunkPlugin({
-    name: "vendor",
-    minChunks: function(module) {
-      return module.context && module.context.indexOf("node_modules") !== -1;
-    }
-  }),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: "manifest"
-  }),
+const htmlWebpackPlugins = pages.map(pageItem => new HtmlWebpackPlugin({
+  filename: `html/${pageItem.page}.html`,
+  template: pageItem.template,
+}))
+
+const plugins = [
+  ...htmlWebpackPlugins,
   new webpack.ProvidePlugin({
     $: "jquery"
   }),
   new ExtractTextPlugin({
-    filename: "css/[name]-[contenthash].css",
+    filename: "css/[name].css",
     disable: process.env.NODE_ENV === "development"
   }),
   new webpack.DefinePlugin({
@@ -23,4 +22,6 @@ module.exports = [
       NODE_ENV: JSON.stringify(process.env.NODE_ENV)
     }
   })
-];
+]
+
+module.exports = plugins
