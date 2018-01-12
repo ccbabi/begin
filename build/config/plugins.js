@@ -6,13 +6,14 @@ const pages = require("./pages")
 const htmlWebpackPlugins = pages.map(pageItem => new HtmlWebpackPlugin({
   filename: `html/${pageItem.page}.html`,
   template: pageItem.template,
+  inject: pageItem.entryExists,
   chunks: [pageItem.page],
   minify: {
     removeComments: true
   }
 }))
 
-console.log(htmlWebpackPlugins)
+// TODO 加入引导页
 
 const plugins = [
   ...htmlWebpackPlugins,

@@ -12,7 +12,7 @@ const webpackDevConfig = merge(webpackBaseConfig, {
   devtool: 'eval-source-map',
   devServer: {
     contentBase: atCmd('dist'),
-    port: 3456
+    port: 12345
   }
 })
 
