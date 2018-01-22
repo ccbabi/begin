@@ -1,3 +1,5 @@
 import './style.styl'
 
-document.body.innerHTML = 'page1 works!'
+const div = document.createElement('div')
+div.innerHTML = 'aaa11'
+document.body.appendChild(div)

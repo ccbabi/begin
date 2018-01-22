@@ -1,3 +1,5 @@
 import './style.css'
 
-document.body.innerHTML = 'page2.js'
+const div = document.createElement('div')
+div.innerHTML = 'demo33'
+document.body.appendChild(div)

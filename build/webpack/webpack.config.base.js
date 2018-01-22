@@ -1,4 +1,4 @@
-const pages = require('../config/pages')
+const { pages } = require('../config/pages')
 const cssRule = require('../config/cssRule')
 const { atCmd, atSrc } = require('../utils/at')
 

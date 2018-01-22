@@ -3,7 +3,7 @@ const fs = require('fs')
 const glob = require('glob')
 const { at, atSrc } = require('../utils/at')
 
-const templates = glob.sync(atSrc(`pages/**/*.html`))
+const templates = glob.sync(atSrc(`pages/**/index.html`))
 
 const pages = templates.reduce((templates, template) => {
   const entry = at(template, '../index.js')
@@ -16,4 +16,7 @@ const pages = templates.reduce((templates, template) => {
   return templates
 }, [])
 
-module.exports = pages
+module.exports = {
+  pages,
+  templates
+}

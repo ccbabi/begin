@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const baseLoaders = [{
   loader: 'css-loader',

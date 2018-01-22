@@ -1,7 +1,7 @@
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const pages = require("./pages")
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const { pages } = require('./pages')
 
 const htmlWebpackPlugins = pages.map(pageItem => new HtmlWebpackPlugin({
   filename: `html/${pageItem.page}.html`,
@@ -18,14 +18,14 @@ const htmlWebpackPlugins = pages.map(pageItem => new HtmlWebpackPlugin({
 const plugins = [
   ...htmlWebpackPlugins,
   new webpack.ProvidePlugin({
-    $: "jquery"
+    $: 'jquery'
   }),
   new ExtractTextPlugin({
-    filename: "css/[name].css",
-    disable: process.env.NODE_ENV === "development"
+    filename: 'css/[name].css',
+    disable: process.env.NODE_ENV === 'development'
   }),
   new webpack.DefinePlugin({
-    "process.env": {
+    'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV)
     }
   })

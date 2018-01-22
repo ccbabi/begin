@@ -15,6 +15,7 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "postcss-loader": "^2.0.10",
+    "reload-html-webpack-plugin": "^0.1.2",
     "rimraf": "^2.6.2",
     "style-loader": "^0.19.1",
     "stylus": "^0.54.5",
@@ -25,7 +26,8 @@
     "webpack-merge": "^4.1.1"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.config.dev.js --open",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack/webpack.config.dev.js",
+    "start:open": "npm start -- --open",
     "prebuild": "yarn run clean",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack/webpack.config.prod.js",
     "clean": "rimraf dist/*"

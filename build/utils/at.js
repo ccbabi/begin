@@ -4,7 +4,7 @@ const PATH_ROOT = process.cwd()
 const PATH_SRC = path.resolve(PATH_ROOT, 'src')
 
 function at () {
-  return path.resolve.apply(path, [...arguments])
+  return path.resolve.apply(path, arguments)
 }
 
 function atCmd (p) {
