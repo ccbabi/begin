@@ -18,8 +18,8 @@ const webpackBaseConfig = {
       ...cssRule,
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
+        exclude: /node_modules/
       },
       {
         test: /\.(png|jpe?g|gif)$/,

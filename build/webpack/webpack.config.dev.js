@@ -18,16 +18,12 @@ const webpackDevConfig = merge(webpackBaseConfig, {
     port: 12345,
     inline: true,
     hot: true,
-    index: 'index.html',
-    openPage: 'html',
     overlay: {
       warnings: true,
-      errors: true,
-      historyApiFallback: true,
-      noInfo: true
+      errors: true
     },
-    useLocalIp: true,
-    watchContentBase: true
+    noInfo: true,
+    useLocalIp: true
   }
 })
 
